@@ -1,0 +1,46 @@
+{
+    "name": "electron-flask",
+    "version": "1.0.0",
+    "description": "Sample program using Electron and Flask.",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "npm run build-python && npm run build-electron",
+        "build-python": "node build_python.js",
+        "build-electron": "electron-builder"
+    },
+    "build": {
+        "appId": "com.electron-flask.my-app",
+        "productName": "ElectronFlask",
+        "asar": false,
+        "asarUnpack": [
+            "**/*.node"
+        ],
+        "mac": {
+            "category": "public.app-category.utilities"
+        },
+        "files": [
+            "main.js",
+            "node_modules/**/*"
+        ],
+        "extraResources": [
+            {
+                "from": "build/dist-python/",
+                "to": "app/dist-python/",
+                "filter": [
+                    "**/*"
+                ]
+            }
+        ]
+    },
+    "keywords": [],
+    "author": "nekobean",
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "^16.0.5",
+        "electron-builder": "^22.14.5"
+    },
+    "dependencies": {
+        "ps-tree": "^1.2.0"
+    }
+}
